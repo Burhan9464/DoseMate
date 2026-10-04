@@ -11,7 +11,7 @@ enum APIConstants {
            let url = URL(string: customURL) {
             return url
         }
-        return URL(string: "http://localhost:8080/api/v1")!
+        return URL(string: "http://192.168.100.18:8080/api/v1")!
         #else
         return URL(string: "https://api.dosemate.app/api/v1")!
         #endif
