@@ -39,5 +39,10 @@
 	</array>
 	<key>NSUserNotificationsUsageDescription</key>
 	<string>DoseMate needs notification access to send timely medication reminders.</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>
