@@ -1,0 +1,19 @@
+services:
+  mysql:
+    image: mysql:8.0.46
+    container_name: dosemate-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-rootpassword}
+      MYSQL_DATABASE: dosemate_dev
+      MYSQL_USER: ${DB_USERNAME:-dosemate}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-dosematepassword}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./docs/database-schema/schema.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_ai_ci
+
+volumes:
+  mysql-data:
