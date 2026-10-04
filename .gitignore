@@ -1,0 +1,33 @@
+# ---- Secrets / local env (NEVER commit) ----
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.key
+*.mobileprovision
+*.cer
+
+# ---- OS / editors ----
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.iml
+
+# ---- Backend (Maven / Java) ----
+backend/**/target/
+backend/**/.mvn/wrapper/maven-wrapper.jar
+*.log
+hs_err_pid*
+
+# ---- iOS (Xcode / SwiftPM) ----
+ios/**/xcuserdata/
+ios/**/DerivedData/
+ios/**/build/
+ios/**/*.xcuserstate
+ios/**/.build/
+ios/**/.swiftpm/
+ios/**/Config/Secrets.xcconfig
