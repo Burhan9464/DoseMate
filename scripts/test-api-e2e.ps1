@@ -144,7 +144,8 @@ if ($todayDoses.Count -gt 0) {
 # 7. Check History
 Write-Host "[7/7] Querying medication history..." -NoNewline
 $historyResponse = Invoke-DoseMateApi -Method "GET" -Path "/doses/history?status=ALL" -Token $jwt
-Write-Host " OK! (History returned $($historyResponse.data.Count) record(s))" -ForegroundColor Green
+$historyCount = $historyResponse.data.totalElements
+Write-Host " OK! (History returned $historyCount record(s))" -ForegroundColor Green
 
 Write-Host "`n==========================================" -ForegroundColor Green
 Write-Host "  All E2E API Verification Tests PASSED!  " -ForegroundColor Green

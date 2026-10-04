@@ -54,7 +54,7 @@ public class DoseController {
 
     @GetMapping("/history")
     public ResponseEntity<ApiResponse<DoseHistoryPageResponse>> getHistory(
-            @RequestParam(required = false) DoseStatus status,
+            @RequestParam(required = false) String status,
             @RequestParam(required = false) String search,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Instant startDate,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Instant endDate,
@@ -62,7 +62,15 @@ public class DoseController {
             @RequestParam(defaultValue = "20") int size) {
 
         Long userId = SecurityUtils.getCurrentUserId();
-        DoseHistoryPageResponse history = doseService.getHistory(userId, status, search, startDate, endDate, page, size);
+        DoseStatus doseStatus = null;
+        if (status != null && !status.isBlank() && !"ALL".equalsIgnoreCase(status.trim())) {
+            try {
+                doseStatus = DoseStatus.valueOf(status.trim().toUpperCase());
+            } catch (IllegalArgumentException ignored) {
+                // If unrecognized status, treat as null to return all
+            }
+        }
+        DoseHistoryPageResponse history = doseService.getHistory(userId, doseStatus, search, startDate, endDate, page, size);
         return ResponseEntity.ok(ApiResponse.success(history, "Medication history retrieved successfully"));
     }
 }

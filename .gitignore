@@ -20,6 +20,9 @@ desktop.ini
 # ---- Backend (Maven / Java) ----
 backend/**/target/
 backend/**/.mvn/wrapper/maven-wrapper.jar
+backend/**/data/
+*.mv.db
+*.trace.db
 *.log
 hs_err_pid*
 
